@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Favorites
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let favorite of loadFavorites(); let i = index">
+      <ion-item>
+        <ion-label>{{favorite.name}}</ion-label>
+      </ion-item>
+      <ion-item-options>
+        <button
+          (click)="removeFromFavorites(favorite.name, i)"
+          ion-button
+          color="secondary"
+          icon-start
+        >
+          <ion-icon name="trash"></ion-icon>
+          Remove Favorite
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

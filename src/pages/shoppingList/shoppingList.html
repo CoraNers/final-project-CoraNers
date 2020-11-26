@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Shopping List
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of itemsToShopFor">
+      <ion-label>{{item.val}}</ion-label>
+      <ion-checkbox slot="beginning" [(ngModel)]="item.isChecked"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
