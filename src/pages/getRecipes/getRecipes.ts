@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { FavoritesServiceProvider } from '../../providers/favorites-service/favorites-service';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-getRecipes',
@@ -13,13 +14,30 @@ export class GetRecipesPage {
   detectedText: string;
   imageText: string;
 
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
+
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider,
-    public favoritesServiceProvider: FavoritesServiceProvider) {
+    public favoritesServiceProvider: FavoritesServiceProvider, private camera: Camera) {
 
   }
 
-  selectSource() { 
-    console.log("In selectSource");
+  getPhoto() { 
+    console.log("In getPhoto");
+    this.camera.getPicture(this.options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.selectedImage = base64Image;
+      console.log("******** ", this.selectedImage);
+    }, (err) => {
+      console.log(err);
+      // Handle error
+    });
     // let actionSheet = this.actionSheetCtrl.create({
     //   buttons: [
     //     {
@@ -41,43 +59,8 @@ export class GetRecipesPage {
     // actionSheet.present();
   }
 
-  // getPicture(sourceType: PictureSourceType) {
-    // this.camera.getPicture(onSuccess, onFail, {
-    //   quality: 100,
-    //   destinationType: this.camera.DestinationType.DATA_URL,
-    //   sourceType: sourceType,
-    //   allowEdit: true,
-    //   saveToPhotoAlbum: false,
-    //   correctOrientation: true
-    // }).then((imageData) => {
-    //   this.selectedImage = `data:image/jpeg;base64,${imageData}`;
-    // });
-
-  // }
-
   recognizeImage() {
     console.log("in recognizeImage");
   }
-
-
-  // recognizeImage() {
-  //   console.log("in recognizeImage");
-    // .then(result => {
-    //   console.log("In recognizeImage callback");
-    //   this.imageText = result.data;
-    // });
-    // Tesseract.recognize(this.selectedImage)
-    // .progress(message => {
-    //   if (message.status === 'recognizing text')
-    //   this.progress.set(message.progress);
-    // })
-    // .catch(err => console.error(err))
-    // .then(result => {
-    //   this.imageText = result.text;
-    // })
-    // .finally(resultOrError => {
-    //   this.progress.complete();
-    // });
-  // }
 
 }

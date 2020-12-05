@@ -8,7 +8,7 @@
   
   <ion-content>
    
-    <button ion-button full (click)="selectSource()">Select Image</button>
+    <button ion-button full (click)="getPhoto()">Select Image</button>
     <button ion-button full (click)="recognizeImage()" [disabled]="!selectedImage">Recognize Image</button>
    
     <img [src]="selectedImage" *ngIf="selectedImage">
