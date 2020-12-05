@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { DataServiceProvider } from '../providers/data-service/data-service';
 import { FavoritesServiceProvider } from '../providers/favorites-service/favorites-service';
 import { MyApp } from './app.component';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { MyApp } from './app.component';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FavoritesServiceProvider,
     DataServiceProvider,
-    // Camera,
+    Camera,
     // OCR
   ]
 })
