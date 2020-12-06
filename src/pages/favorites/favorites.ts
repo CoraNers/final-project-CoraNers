@@ -13,18 +13,18 @@ export class FavoritesPage {
 
   }
 
-  loadFavorites() {
-    return this.favService.getFavorites();
-  }
+  // loadFavorites() {
+  //   return this.favService.getFavorites();
+  // }
 
-  removeFromFavorites(favoriteName, index) {
-    console.log('favorite id', favoriteName);
-    const toast = this.toastCtrl.create({
-      message: "Removing favorite - " + favoriteName + " ...",
-      duration: 3000
-    });
-    toast.present();
-    this.dataService.removeFavorite(index);
-  }
+  // removeFromFavorites(favoriteName, index) {
+  //   console.log('favorite id', favoriteName);
+  //   const toast = this.toastCtrl.create({
+  //     message: "Removing favorite - " + favoriteName + " ...",
+  //     duration: 3000
+  //   });
+  //   toast.present();
+  //   this.dataService.removeFavorite(index);
+  // }
 
 }

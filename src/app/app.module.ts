@@ -10,6 +10,7 @@ import { ShoppingListPage } from '../pages/shoppingList/shoppingList';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DataServiceProvider } from '../providers/data-service/data-service';
 import { FavoritesServiceProvider } from '../providers/favorites-service/favorites-service';
+import { HttpClientModule } from  '@angular/common/http';
 import { MyApp } from './app.component';
 import { Camera } from '@ionic-native/camera';
 
@@ -24,7 +25,8 @@ import { Camera } from '@ionic-native/camera';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

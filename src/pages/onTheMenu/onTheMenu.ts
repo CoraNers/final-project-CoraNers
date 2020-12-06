@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { DataServiceProvider } from '../../providers/data-service/data-service';
 
 @Component({
   selector: 'page-onTheMenu',
@@ -7,32 +8,27 @@ import { NavController } from 'ionic-angular';
 })
 export class OnTheMenuPage {
 
-  constructor(public navCtrl: NavController) {
+  onTheMenuItems = [];
+  errorMessage: string;
 
-  }
-
-  menuItems = [
-    {
-      name: "Spicy Shrimp",
-      id: 1
-    },
-    {
-      name: "Quick Turkey Rolls",
-      id: 3
-    }
-  ];
-
-  loadOnTheMenu() {
-    console.log('I am here');
-    return this.menuItems;
+  constructor(public navCtrl: NavController, public dataService: DataServiceProvider) {
+    dataService.dataChanged$.subscribe((dataChanged: boolean) => {
+      this.loadOnTheMenuItems();
+    });
   }
   
-  addToFavorites(favoriteName, index) {
-    console.log('in add to favorites');
+  ionViewWillEnter() {
+    this.loadOnTheMenuItems();
   }
 
-  captureMenuItem() {
-    // TODO OCR for image in gallery or camera
+  loadOnTheMenuItems() {
+    console.log('I am here');
+    this.onTheMenuItems = this.dataService.getOnTheMenuItems();
+    // this.dataService.getOnTheMenuItems()
+    //   .subscribe(
+    //     onTheMenuItems => this.onTheMenuItems = onTheMenuItems,
+    //     error => this.errorMessage = <any>error 
+    //   );
   }
 
 }

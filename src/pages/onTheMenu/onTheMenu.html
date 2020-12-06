@@ -6,11 +6,11 @@
 
 <ion-content padding>
   <ion-list>
-    <p>12-05-20</p>
-    <h3 text-center *ngIf="loadOnTheMenu().length === 0">
+    <p>12-06-20</p>
+    <h3 text-center *ngIf="onTheMenuItems.length === 0">
       Nothing on the menu yet
     </h3>
-    <ion-item-sliding *ngFor="let menuItem of loadOnTheMenu(); let i = index">
+    <ion-item-sliding *ngFor="let menuItem of onTheMenuItems; let i = index">
       <ion-item>
         <ion-label>{{menuItem.name}}</ion-label>
       </ion-item>

@@ -1,19 +1,80 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class DataServiceProvider {
 
-  constructor() {
+  onTheMenuItems = [
+    {
+    "name": "Spicy Shrimp",
+    "isFavorite": true,
+    "ingredientList": [
+      {
+        "name": "Shrimp"
+      },
+      {
+        "name": "Chili Paste"
+      },
+      {
+        "name": "Lemon"
+      }
+    ]
+    },
+    {
+      "name": "Spicy Shrimp 2",
+      "isFavorite": true,
+      "ingredientList": [
+        {
+          "name": "Shrimp2"
+        },
+        {
+          "name": "Chili Paste2"
+        },
+        {
+          "name": "Lemon2"
+        }
+      ]
+      }
+  ];
+
+  // onTheMenuItems: any = [];
+  dataChanged$: Observable<boolean>;
+  private dataChangeSubject: Subject<boolean>;
+  // baseURL = "http://localhost:8080";
+  baseURL = "http://192.168.0.28:8080";
+
+  constructor(public http: HttpClient) {
+    this.dataChangeSubject = new Subject<boolean>();
+    this.dataChanged$ = this.dataChangeSubject.asObservable();
+    console.log('In constructor of data service');
   }
 
-  favorites= [];
-
-  addToFavorites() {
-    // TODO 
+  getOnTheMenuItems() {
+  // getOnTheMenuItems(): Observable<object[]> {
+    console.log('read to make the api call');
+    return this.onTheMenuItems;
+    // return this.http.get(this.baseURL + '/api/finalProjectCollection').pipe(
+    //   map(this.extractData),
+    //   catchError(this.handleError)
+    // );
   }
 
-  removeFavorite(index) {
-    this.favorites.splice(index, 1);
+  private extractData(res: Response) {
+    let body = res;
+    return body || {};
   }
 
-}
+  private handleError(error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const err = error || '';
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }}
