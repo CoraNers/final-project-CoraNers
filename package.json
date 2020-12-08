@@ -19,6 +19,7 @@
     "@angular/forms": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/action-sheet": "^5.30.0",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "4.20.0",
     "@ionic-native/ocr": "^5.30.0",
@@ -39,14 +40,16 @@
     "@ionic/app-scripts": "3.2.4",
     "@ionic/cli-plugin-ionic-angular": "1.4.1",
     "@types/tesseract.js": "0.0.2",
+    "cordova": "^10.0.0",
     "cordova-android": "^9.0.0",
     "cordova-plugin-actionsheet": "^2.3.3",
     "cordova-plugin-androidx-adapter": "^1.1.3",
     "cordova-plugin-camera": "^5.0.1",
+    "cordova-plugin-cleartext": "^1.0.0",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-document-scanner": "^4.2.6",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
-    "cordova-plugin-ionic-webview": "^4.0.0",
+    "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-mobile-ocr": "^3.1.2",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
@@ -60,18 +63,14 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-mobile-ocr": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-document-scanner": {},
-      "cordova-plugin-actionsheet": {}
+      "cordova-plugin-actionsheet": {},
+      "cordova-plugin-ionic-webview": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }
