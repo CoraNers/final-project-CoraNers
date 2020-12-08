@@ -100,5 +100,5 @@
     <allow-navigation href="http://192.168.0.35:8100" />
     <allow-navigation href="http://192.168.0.28:8100" />
     <allow-navigation href="*" />
-    <allow-navigation href="http://localhost:8101" sessionid="9c046604" />
+    <allow-navigation href="http://localhost:8101" sessionid="6d662249" />
 </widget>

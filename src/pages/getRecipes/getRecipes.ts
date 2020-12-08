@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActionSheetOptions } from '@ionic-native/action-sheet/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { OCR, OCRSourceType } from '@ionic-native/ocr/ngx';
+import { OCR, OCRResult, OCRSourceType } from '@ionic-native/ocr/ngx';
 import { ActionSheetController, NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { FavoritesServiceProvider } from '../../providers/favorites-service/favorites-service';
@@ -17,7 +17,6 @@ export class GetRecipesPage {
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider,
     public favoritesServiceProvider: FavoritesServiceProvider, private camera: Camera, private actionSheetCtrl: ActionSheetController,
     private ocr: OCR) {
-
   }
 
   setCameraOptions(sourceType) {
@@ -72,12 +71,18 @@ export class GetRecipesPage {
 
   recognizeText(imageURI) {
     console.log("CORA in recognizeImage");
-    this.ocr.recText(OCRSourceType.NORMFILEURL, imageURI).then(ocrResult => {
-      console.log('CORA recognizedTest', ocrResult);
-      if (ocrResult.foundText) {
-        // we have text detected!
-      }
-    });
+    console.log("****CORA****");
+    console.log(imageURI);
+    this.ocr.recText(OCRSourceType.NORMFILEURL, imageURI)
+    .then((res: OCRResult) => console.log(JSON.stringify(res)))
+    .catch((error: any) => console.error(error));
+    // this.ocr.recText(OCRSourceType.NORMFILEURL, imageURI).then(ocrResult => {
+    //   console.log('CORA OCR DATA');
+    //   console.log(ocrResult);
+    // }).catch(error => {
+    //   console.log('CORA REJECTED PROMISE');
+    //   console.log(error);
+    // });
 
   }
 
