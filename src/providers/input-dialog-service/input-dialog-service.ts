@@ -1,3 +1,4 @@
+import { _ParseAST } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { DataServiceProvider } from '../data-service/data-service';
@@ -10,7 +11,7 @@ export class InputDialogServiceProvider {
 
   showDetails(menuItem?) {
     let alert = this.alertCtrl.create({
-      title: menuItem,
+      title: menuItem.name,
       message: 'Details...',
       buttons: [
         {
@@ -22,6 +23,8 @@ export class InputDialogServiceProvider {
         }
       ]
     });
+    console.log(menuItem);
+    console.log(menuItem.ingredientList);
     alert.present();
   }
 //   showPrompt(menuItem?) {

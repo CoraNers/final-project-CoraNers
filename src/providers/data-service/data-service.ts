@@ -10,7 +10,7 @@ export class DataServiceProvider {
   onTheMenuItems = [
     {
     "name": "Spicy Shrimp",
-    "isFavorite": true,
+    "isFavorite": false,
     "ingredientList": [
       {
         "name": "Shrimp"

@@ -16,7 +16,7 @@
       </ion-item>
       <ion-item-options>
         <button
-          (click)="viewDetails(menuItem.name, i)"
+          (click)="viewDetails(menuItem, i)"
           ion-button
           color="primary"
           icon-start
@@ -31,7 +31,8 @@
           icon-start
         >
           <ion-icon name="heart-outline"></ion-icon>
-          Add Favorite
+          <span *ngIf="menuItem.isFavorite">Favorite</span>
+          <span *ngIf="!menuItem.isFavorite">Add Favorite</span>
         </button>
       </ion-item-options>
     </ion-item-sliding>

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
-import { ModalController, NavParams} from 'ionic-angular';
-import { InputDialogServiceProvider } from '../../providers/input-dialog-service/input-dialog-service';
+import { ModalServiceProvider } from '../../providers/modal-service/modal-service';
 
 @Component({
   selector: 'page-onTheMenu',
@@ -13,7 +12,7 @@ export class OnTheMenuPage {
   onTheMenuItems = [];
   errorMessage: string;
 
-  constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public dialogSvc: InputDialogServiceProvider) {
+  constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public modalCtrl: ModalController) {
     dataService.dataChanged$.subscribe((dataChanged: boolean) => {
       this.loadOnTheMenuItems();
     });
@@ -35,7 +34,13 @@ export class OnTheMenuPage {
 
   viewDetails(menuItem, index) {
     console.log('view details');
-    this.dialogSvc.showDetails(menuItem);
+
+    console.log(menuItem.name);
+    const modalTitle = menuItem.name;
+    var modalPage = this.modalCtrl.create('ModalPage'); 
+    modalPage.present();
+
+    // this.modalCtrl.showDetails(menuItem);
   }
 
   addToFavorites(menuItem, index) {

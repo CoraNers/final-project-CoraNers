@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -9,11 +10,8 @@ import { OnTheMenuPage } from '../pages/onTheMenu/onTheMenu';
 import { ShoppingListPage } from '../pages/shoppingList/shoppingList';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DataServiceProvider } from '../providers/data-service/data-service';
-import { HttpClientModule } from  '@angular/common/http';
-import { MyApp } from './app.component';
-import { Camera } from '@ionic-native/camera';
-import { OCR } from '@ionic-native/ocr/ngx';
 import { InputDialogServiceProvider } from '../providers/input-dialog-service/input-dialog-service';
+import { MyApp } from './app.component';
 
 @NgModule({
   declarations: [
@@ -44,9 +42,7 @@ import { InputDialogServiceProvider } from '../providers/input-dialog-service/in
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     InputDialogServiceProvider,
     DataServiceProvider,
-    Camera,
     ActionSheetController,
-    OCR
   ]
 })
 export class AppModule {}
