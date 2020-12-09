@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
-import { FavoritesServiceProvider } from '../../providers/favorites-service/favorites-service';
 
 @Component({
   selector: 'page-favorites',
@@ -9,7 +8,7 @@ import { FavoritesServiceProvider } from '../../providers/favorites-service/favo
 })
 export class FavoritesPage {
 
-  constructor(public navCtrl: NavController, public favService: FavoritesServiceProvider, public toastCtrl: ToastController, public dataService: DataServiceProvider) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider) {
 
   }
 

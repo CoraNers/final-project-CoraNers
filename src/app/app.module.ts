@@ -9,11 +9,11 @@ import { OnTheMenuPage } from '../pages/onTheMenu/onTheMenu';
 import { ShoppingListPage } from '../pages/shoppingList/shoppingList';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DataServiceProvider } from '../providers/data-service/data-service';
-import { FavoritesServiceProvider } from '../providers/favorites-service/favorites-service';
 import { HttpClientModule } from  '@angular/common/http';
 import { MyApp } from './app.component';
 import { Camera } from '@ionic-native/camera';
 import { OCR } from '@ionic-native/ocr/ngx';
+import { InputDialogServiceProvider } from '../providers/input-dialog-service/input-dialog-service';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { OCR } from '@ionic-native/ocr/ngx';
     GetRecipesPage,
     ShoppingListPage,
     OnTheMenuPage,
-    TabsPage
+    TabsPage,
   ],
   imports: [
     BrowserModule,
@@ -36,13 +36,13 @@ import { OCR } from '@ionic-native/ocr/ngx';
     GetRecipesPage,
     ShoppingListPage,
     OnTheMenuPage,
-    TabsPage
+    TabsPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FavoritesServiceProvider,
+    InputDialogServiceProvider,
     DataServiceProvider,
     Camera,
     ActionSheetController,

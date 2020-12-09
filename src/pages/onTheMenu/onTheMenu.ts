@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { ModalController, NavParams} from 'ionic-angular';
+import { InputDialogServiceProvider } from '../../providers/input-dialog-service/input-dialog-service';
 
 @Component({
   selector: 'page-onTheMenu',
@@ -12,7 +13,7 @@ export class OnTheMenuPage {
   onTheMenuItems = [];
   errorMessage: string;
 
-  constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public dialogSvc: InputDialogServiceProvider) {
     dataService.dataChanged$.subscribe((dataChanged: boolean) => {
       this.loadOnTheMenuItems();
     });
@@ -34,10 +35,7 @@ export class OnTheMenuPage {
 
   viewDetails(menuItem, index) {
     console.log('view details');
-  }
-
-  presentDetailsModal() {
-    let detailsModal = this.modalCtrl.create()
+    this.dialogSvc.showDetails(menuItem);
   }
 
   addToFavorites(menuItem, index) {
