@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
-import { ModalServiceProvider } from '../../providers/modal-service/modal-service';
 
 @Component({
   selector: 'page-onTheMenu',
@@ -34,10 +33,8 @@ export class OnTheMenuPage {
 
   viewDetails(menuItem, index) {
     console.log('view details');
-
-    console.log(menuItem.name);
     const modalTitle = menuItem.name;
-    var modalPage = this.modalCtrl.create('ModalPage'); 
+    var modalPage = this.modalCtrl.create('ModalPage', menuItem); 
     modalPage.present();
 
     // this.modalCtrl.showDetails(menuItem);

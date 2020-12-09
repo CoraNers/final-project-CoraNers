@@ -15,11 +15,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ModalPage {
 
+  modalPageTitle: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalPage');
+
+    this.modalPageTitle = this.navParams.get('name');
+    console.log(this.navParams.get('name'));
+    console.log(this.navParams.get('ingredientList'));
+    console.log(this.navParams.get('isFavorite'));
   }
 
 }
