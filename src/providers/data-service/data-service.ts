@@ -7,44 +7,46 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable()
 export class DataServiceProvider {
 
-  onTheMenuItems = [
-    {
-    "name": "Spicy Shrimp",
-    "isFavorite": false,
-    "ingredientList": [
-      {
-        "name": "Shrimp"
-      },
-      {
-        "name": "Chili Paste"
-      },
-      {
-        "name": "Lemon"
-      }
-    ]
-    },
-    {
-      "name": "Spicy Shrimp 2",
-      "isFavorite": true,
-      "ingredientList": [
-        {
-          "name": "Shrimp2"
-        },
-        {
-          "name": "Chili Paste2"
-        },
-        {
-          "name": "Lemon2"
-        }
-      ]
-      }
-  ];
+  // onTheMenuItems = [
+  //   {
+  //   "name": "Spicy Shrimp",
+  //   "isFavorite": false,
+  //   "ingredientList": [
+  //     {
+  //       "name": "Shrimp"
+  //     },
+  //     {
+  //       "name": "Chili Paste"
+  //     },
+  //     {
+  //       "name": "Lemon"
+  //     }
+  //   ]
+  //   },
+  //   {
+  //     "name": "Spicy Shrimp 2",
+  //     "isFavorite": true,
+  //     "ingredientList": [
+  //       {
+  //         "name": "Shrimp2"
+  //       },
+  //       {
+  //         "name": "Chili Paste2"
+  //       },
+  //       {
+  //         "name": "Lemon2"
+  //       }
+  //     ]
+  //     }
+  // ];
+
+  putItems: any = [];
 
   // onTheMenuItems: any = [];
   dataChanged$: Observable<boolean>;
   private dataChangeSubject: Subject<boolean>;
-  // baseURL = "http://localhost:8080";
-  baseURL = "http://192.168.0.28:8080";
+  baseURL = "http://localhost:8080";
+  // baseURL = "http://192.168.0.28:8080";
 
   constructor(public http: HttpClient) {
     this.dataChangeSubject = new Subject<boolean>();
@@ -55,11 +57,11 @@ export class DataServiceProvider {
   getOnTheMenuItems() {
   // getOnTheMenuItems(): Observable<object[]> {
     console.log('read to make the api call');
-    return this.onTheMenuItems;
-    // return this.http.get(this.baseURL + '/api/finalProjectCollection').pipe(
-    //   map(this.extractData),
-    //   catchError(this.handleError)
-    // );
+    // return this.onTheMenuItems;
+    return this.http.get(this.baseURL + '/api/myCollection').pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
   }
 
   private extractData(res: Response) {
@@ -77,4 +79,19 @@ export class DataServiceProvider {
     }
     console.error(errMsg);
     return Observable.throw(errMsg);
-  }}
+  }
+
+  saveMeal(mealData) {
+    console.log("CORA MEALDATA");
+    console.log(mealData);
+    let modifiedJson = {};
+
+
+    // this.http.post(this.baseURL + '/api/myCollection/', mealData).subscribe(res => {
+    //   this.putItems = res;
+    //   console.log('PUT ITEMS', this.putItems);
+    //   this.dataChangeSubject.next(true);
+    // })
+  }
+
+}

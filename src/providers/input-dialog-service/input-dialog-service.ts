@@ -9,52 +9,54 @@ export class InputDialogServiceProvider {
   constructor(public dataService: DataServiceProvider, public alertCtrl: AlertController) {
   }
 
-  showDetails(menuItem?) {
+  showLoadRecipePrompt() {
     let alert = this.alertCtrl.create({
-      title: menuItem.name,
-      message: 'Details...',
+      title: "Add a new meal",
+      message: 'Please enter name and ingredients',
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Recipe Name',
+          value: null
+        },
+        {
+          name: 'ingredient',
+          placeholder: 'Ingredient',
+          value: null,
+        },
+        {
+          name: 'ingredient',
+          placeholder: 'Ingredient',
+          value: null,
+        },
+        {
+          name: 'ingredient',
+          placeholder: 'Ingredient',
+          value: null,
+        }
+      ],
       buttons: [
         {
-          text: 'Close',
+          text: 'Cancel',
           role: 'cancel',
           handler: data => {
-            console.log('Close dialog');
+            console.log('Cancel dialog');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            // if (item !== undefined) {
+            //   // this.dataService.editItem(data, item._id);
+            // } else {
+            //   // this.dataService.addItem(data);
+            // }
+            this.dataService.saveMeal(data);
           }
         }
       ]
     });
-    console.log(menuItem);
-    console.log(menuItem.ingredientList);
     alert.present();
   }
-//   showPrompt(menuItem?) {
-//     let alert = this.alertCtrl.create({
-//       title: menuItem,
-//       message: 'Details...',
-//       inputs: [
-//         {
-//           name: 'name',
-//           placeholder: 'Name',
-//           value: item? item.name : null
-//         },
-//         {
-//           name: 'quantity',
-//           placeholder: 'Quantity',
-//           value: item? item.quantity : null,
-//           type: "number"
-//         }
-//       ],
-//       buttons: [
-//         {
-//           text: 'Close',
-//           role: 'cancel',
-//           handler: data => {
-//             console.log('Close dialog');
-//           }
-//         }
-//       ]
-//     });
-//     alert.present();
-//   }
 
 }

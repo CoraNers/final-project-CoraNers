@@ -1,11 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ActionSheetController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { FavoritesPage } from '../pages/favorites/favorites';
-import { GetRecipesPage } from '../pages/getRecipes/getRecipes';
+import { LoadRecipesPage } from '../pages/loadRecipes/loadRecipes';
 import { OnTheMenuPage } from '../pages/onTheMenu/onTheMenu';
 import { ShoppingListPage } from '../pages/shoppingList/shoppingList';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -17,7 +18,7 @@ import { MyApp } from './app.component';
   declarations: [
     MyApp,
     FavoritesPage,
-    GetRecipesPage,
+    LoadRecipesPage,
     ShoppingListPage,
     OnTheMenuPage,
     TabsPage,
@@ -31,7 +32,7 @@ import { MyApp } from './app.component';
   entryComponents: [
     MyApp,
     FavoritesPage,
-    GetRecipesPage,
+    LoadRecipesPage,
     ShoppingListPage,
     OnTheMenuPage,
     TabsPage,
@@ -43,6 +44,7 @@ import { MyApp } from './app.component';
     InputDialogServiceProvider,
     DataServiceProvider,
     ActionSheetController,
+    Camera
   ]
 })
 export class AppModule {}
