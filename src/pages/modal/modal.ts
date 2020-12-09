@@ -9,7 +9,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ModalPage {
 
   modalPageTitle: string;
-  modalPageItems: [];
+  modalPageItems: any;
   modalPageIsFavorite: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
