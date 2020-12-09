@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.4",
+    "@ionic/cli-plugin-cordova": "1.6.2",
     "@ionic/cli-plugin-ionic-angular": "1.4.1",
     "@types/tesseract.js": "0.0.2",
     "cordova": "^10.0.0",
