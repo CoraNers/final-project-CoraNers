@@ -16,6 +16,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ModalPage {
 
   modalPageTitle: string;
+  modalPageItems: [];
+  modalPageIsFavorite: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -24,9 +26,11 @@ export class ModalPage {
     console.log('ionViewDidLoad ModalPage');
 
     this.modalPageTitle = this.navParams.get('name');
-    console.log(this.navParams.get('name'));
-    console.log(this.navParams.get('ingredientList'));
-    console.log(this.navParams.get('isFavorite'));
+    this.modalPageItems = this.navParams.get('ingredientList') || [];
+    this.modalPageIsFavorite = this.navParams.get('isFavorite') || false;
+    // console.log(this.navParams.get('name'));
+    // console.log(this.navParams.get('ingredientList'));
+    // console.log(this.navParams.get('isFavorite'));
   }
 
 }
