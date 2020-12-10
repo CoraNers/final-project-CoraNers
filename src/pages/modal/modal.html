@@ -1,6 +1,8 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{this.modalPageTitle}}</ion-title>
+    <ion-title>
+      <div *ngIf="modalPageTitle">{{this.modalPageTitle}}</div>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,8 +13,11 @@
     </ion-item>
   </div>
 
-
-  <ion-list lines="none" (ngSubmit)="logForm()">
+  <ion-list lines="none">
+    <ion-item>
+      <ion-label>Recipe Name...</ion-label>
+      <ion-input required type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
     <form [formGroup]="myForm">
       <ion-item *ngFor="let control of myForm.controls | keyvalue">
         <ion-label>Ingredient...</ion-label>
@@ -23,8 +28,8 @@
 
     <button ion-button expand="full" color="light" (click)="addControl()">Add Ingredient</button>
 
-    <button ion-button block>Add Photo</button>
-    <button ion-button type="submit" block>Save & Load Meal</button>
+    <!-- <button ion-button block>Add Photo</button> -->
+    <button ion-button (click)="saveMeal()" block>Save & Load Meal</button>
   </ion-list>
 
 

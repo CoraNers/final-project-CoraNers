@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
@@ -11,6 +11,7 @@ export class ModalPage {
 
   public myForm: FormGroup;
   private ingredientCount: number = 1;
+  private name: string;
 
   modalPageTitle: string;
   modalPageItems: any;
@@ -35,6 +36,30 @@ export class ModalPage {
 
   removeControl(control){
     this.myForm.removeControl(control.key);
+  }
+
+  saveMeal() {
+    console.log('save meal');
+    let ingredientList = [];
+
+
+    const meal: any = {
+      "name": this.name,
+      "ingredientList": [
+        {
+
+        }
+      ]
+    }
+
+    console.log(this.myForm.value);
+
+    let ingredientValues = Object.values(this.myForm.value);
+    console.log(ingredientValues);
+
+
+    console.log(this.name);
+
   }
 
 }
