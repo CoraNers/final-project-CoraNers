@@ -7,38 +7,38 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable()
 export class DataServiceProvider {
 
-  // onTheMenuItems = [
-  //   {
-  //   "name": "Spicy Shrimp",
-  //   "isFavorite": false,
-  //   "ingredientList": [
-  //     {
-  //       "name": "Shrimp"
-  //     },
-  //     {
-  //       "name": "Chili Paste"
-  //     },
-  //     {
-  //       "name": "Lemon"
-  //     }
-  //   ]
-  //   },
-  //   {
-  //     "name": "Spicy Shrimp 2",
-  //     "isFavorite": true,
-  //     "ingredientList": [
-  //       {
-  //         "name": "Shrimp2"
-  //       },
-  //       {
-  //         "name": "Chili Paste2"
-  //       },
-  //       {
-  //         "name": "Lemon2"
-  //       }
-  //     ]
-  //     }
-  // ];
+  onTheMenuItems = [
+    {
+    "name": "Spicy Shrimp",
+    "isFavorite": false,
+    "ingredientList": [
+      {
+        "name": "Shrimp"
+      },
+      {
+        "name": "Chili Paste"
+      },
+      {
+        "name": "Lemon"
+      }
+    ]
+    },
+    {
+      "name": "Spicy Shrimp 2",
+      "isFavorite": true,
+      "ingredientList": [
+        {
+          "name": "Shrimp2"
+        },
+        {
+          "name": "Chili Paste2"
+        },
+        {
+          "name": "Lemon2"
+        }
+      ]
+      }
+  ];
 
   putItems: any = [];
 
@@ -57,11 +57,11 @@ export class DataServiceProvider {
   getOnTheMenuItems() {
   // getOnTheMenuItems(): Observable<object[]> {
     console.log('read to make the api call');
-    // return this.onTheMenuItems;
-    return this.http.get(this.baseURL + '/api/myCollection').pipe(
-      map(this.extractData),
-      catchError(this.handleError)
-    );
+    return this.onTheMenuItems;
+    // return this.http.get(this.baseURL + '/api/myCollection').pipe(
+    //   map(this.extractData),
+    //   catchError(this.handleError)
+    // );
   }
 
   private extractData(res: Response) {
