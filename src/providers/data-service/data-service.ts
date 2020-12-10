@@ -1,52 +1,51 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import { map, catchError } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class DataServiceProvider {
 
-  onTheMenuItems = [
-    {
-    "name": "Spicy Shrimp",
-    "isFavorite": false,
-    "ingredientList": [
-      {
-        "name": "Shrimp"
-      },
-      {
-        "name": "Chili Paste"
-      },
-      {
-        "name": "Lemon"
-      }
-    ]
-    },
-    {
-      "name": "Spicy Shrimp 2",
-      "isFavorite": true,
-      "ingredientList": [
-        {
-          "name": "Shrimp2"
-        },
-        {
-          "name": "Chili Paste2"
-        },
-        {
-          "name": "Lemon2"
-        }
-      ]
-      }
-  ];
+  // onTheMenuItems = [
+  //   {
+  //   "name": "Spicy Shrimp",
+  //   "isFavorite": false,
+  //   "ingredientList": [
+  //     {
+  //       "name": "Shrimp"
+  //     },
+  //     {
+  //       "name": "Chili Paste"
+  //     },
+  //     {
+  //       "name": "Lemon"
+  //     }
+  //   ]
+  //   },
+  //   {
+  //     "name": "Spicy Shrimp 2",
+  //     "isFavorite": true,
+  //     "ingredientList": [
+  //       {
+  //         "name": "Shrimp2"
+  //       },
+  //       {
+  //         "name": "Chili Paste2"
+  //       },
+  //       {
+  //         "name": "Lemon2"
+  //       }
+  //     ]
+  //     }
+  // ];
 
   putItems: any = [];
 
-  // onTheMenuItems: any = [];
+  onTheMenuItems: any = [];
   dataChanged$: Observable<boolean>;
   private dataChangeSubject: Subject<boolean>;
-  baseURL = "http://localhost:8080";
-  // baseURL = "http://192.168.0.28:8080";
+  // baseURL = "http://localhost:8080";
+  baseURL = "http://192.168.0.28:8080";
 
   constructor(public http: HttpClient) {
     this.dataChangeSubject = new Subject<boolean>();
@@ -54,14 +53,14 @@ export class DataServiceProvider {
     console.log('In constructor of data service');
   }
 
-  getOnTheMenuItems() {
-  // getOnTheMenuItems(): Observable<object[]> {
+  // getOnTheMenuItems() {
+  getOnTheMenuItems(): Observable<any> {
     console.log('read to make the api call');
-    return this.onTheMenuItems;
-    // return this.http.get(this.baseURL + '/api/myCollection').pipe(
-    //   map(this.extractData),
-    //   catchError(this.handleError)
-    // );
+    // return this.onTheMenuItems;
+    return this.http.get(this.baseURL + '/api/myCollection').pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
   }
 
   private extractData(res: Response) {
@@ -85,12 +84,13 @@ export class DataServiceProvider {
     console.log("CORA MEALDATA");
     console.log(mealData);
 
-
-    // this.http.post(this.baseURL + '/api/myCollection/', mealData).subscribe(res => {
-    //   this.putItems = res;
-    //   console.log('PUT ITEMS', this.putItems);
-    //   this.dataChangeSubject.next(true);
-    // })
+    this.http.post(this.baseURL + '/api/myCollection/', mealData).subscribe(res => {
+      console.log('INSIDE POST');
+      console.log(res);
+      this.putItems = res;
+      console.log('PUT ITEMS', this.putItems);
+      this.dataChangeSubject.next(true);
+    })
   }
 
 }

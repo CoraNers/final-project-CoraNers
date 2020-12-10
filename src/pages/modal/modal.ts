@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DataServiceProvider } from '../../providers/data-service/data-service';
+
+// some code here for dynamically adding additional inputs referenced from here:
+// https://www.joshmorony.com/dynamic-infinite-input-fields-in-an-ionic-application/
 
 @IonicPage()
 @Component({
@@ -11,16 +15,19 @@ export class ModalPage {
 
   public myForm: FormGroup;
   private ingredientCount: number = 1;
-  private name: string;
+  private name: string; // bound to recipeName in modal
 
   modalPageTitle: string;
   modalPageItems: any;
   modalPageIsFavorite: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder,
+    private dataSvc: DataServiceProvider) {
+
     this.myForm = formBuilder.group({
       ingredient1: ['', Validators.required]
     });
+
   }
 
   ionViewDidLoad() {
@@ -39,26 +46,21 @@ export class ModalPage {
   }
 
   saveMeal() {
-    console.log('save meal');
-    let ingredientList = [];
-
-
-    const meal: any = {
-      "name": this.name,
-      "ingredientList": [
-        {
-
-        }
-      ]
+    // get all values from the dynamically added ingredient fields - not sure how many there are, so check here
+    let ingredientValues = Object.values(this.myForm.value);
+    let ingredientListArray = [];
+    for (let i = 0; i < ingredientValues.length; i++) {
+      // make an object out of it and put it in the array to be sent to the service
+      ingredientListArray.push({ "name": ingredientValues[i]})
     }
 
-    console.log(this.myForm.value);
+    let mealDataObj = {
+      name: this.name,
+      isFavorite: false,
+      ingredientList: ingredientListArray
+    };
 
-    let ingredientValues = Object.values(this.myForm.value);
-    console.log(ingredientValues);
-
-
-    console.log(this.name);
+    this.dataSvc.saveMeal(mealDataObj);
 
   }
 

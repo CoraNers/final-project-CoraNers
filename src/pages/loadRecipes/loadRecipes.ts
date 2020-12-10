@@ -17,8 +17,6 @@ export class LoadRecipesPage {
   }
 
   loadRecipe() {
-    this.inputService.showLoadRecipePrompt();
-
     console.log('loadRecipe');
     const modalTitle = "Test";
     var modalPage = this.modalCtrl.create('ModalPage'); 

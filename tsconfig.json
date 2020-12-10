@@ -6,12 +6,12 @@
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es2015"
+      "es2017"
     ],
-    "module": "es2015",
+    "module": "ESNext",
     "moduleResolution": "node",
     "sourceMap": true,
-    "target": "es5",
+    "target": "ESNext",
     "types": []
   },
   "include": [
