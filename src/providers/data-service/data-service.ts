@@ -84,7 +84,6 @@ export class DataServiceProvider {
   saveMeal(mealData) {
     console.log("CORA MEALDATA");
     console.log(mealData);
-    let modifiedJson = {};
 
 
     // this.http.post(this.baseURL + '/api/myCollection/', mealData).subscribe(res => {

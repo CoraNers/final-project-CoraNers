@@ -20,7 +20,7 @@ export class InputDialogServiceProvider {
           value: null
         },
         {
-          name: 'ingredient',
+          name: 'ingredientList',
           placeholder: 'Ingredient',
           value: null,
         },

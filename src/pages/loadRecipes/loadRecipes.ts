@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActionSheetOptions } from '@ionic-native/action-sheet/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { ActionSheetController, NavController, ToastController } from 'ionic-angular';
+import { ActionSheetController, ModalController, NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { InputDialogServiceProvider } from '../../providers/input-dialog-service/input-dialog-service';
 
@@ -12,11 +12,17 @@ import { InputDialogServiceProvider } from '../../providers/input-dialog-service
 export class LoadRecipesPage {
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider,
-    private camera: Camera, private actionSheetCtrl: ActionSheetController, private inputService: InputDialogServiceProvider) {
+    private camera: Camera, private actionSheetCtrl: ActionSheetController, private inputService: InputDialogServiceProvider,
+    public modalCtrl: ModalController) {
   }
 
   loadRecipe() {
     this.inputService.showLoadRecipePrompt();
+
+    console.log('loadRecipe');
+    const modalTitle = "Test";
+    var modalPage = this.modalCtrl.create('ModalPage'); 
+    modalPage.present();
   }
 
   setCameraOptions(sourceType) {
