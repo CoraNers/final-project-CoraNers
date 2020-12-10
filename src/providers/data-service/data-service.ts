@@ -84,7 +84,7 @@ export class DataServiceProvider {
     console.log("CORA MEALDATA");
     console.log(mealData);
 
-    this.http.post(this.baseURL + '/api/myCollection/', mealData).subscribe(res => {
+    this.http.post(this.baseURL + '/api/myCollection', mealData).subscribe(res => {
       console.log('INSIDE POST');
       console.log(res);
       this.putItems = res;
