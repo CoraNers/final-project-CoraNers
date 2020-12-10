@@ -16,6 +16,7 @@ export class ModalPage {
   public myForm: FormGroup;
   private ingredientCount: number = 1;
   private name: string; // bound to recipeName in modal
+  private addToMenuCheckbox: boolean; // bound to checkbox in modal
 
   modalPageTitle: string;
   modalPageItems: any;
@@ -46,6 +47,8 @@ export class ModalPage {
   }
 
   saveMeal() {
+
+    console.log(this.addToMenuCheckbox);
     // get all values from the dynamically added ingredient fields - not sure how many there are, so check here
     let ingredientValues = Object.values(this.myForm.value);
     let ingredientListArray = [];
@@ -57,7 +60,8 @@ export class ModalPage {
     let mealDataObj = {
       name: this.name,
       isFavorite: false,
-      ingredientList: ingredientListArray
+      ingredientList: ingredientListArray,
+      onMenu: this.addToMenuCheckbox
     };
 
     this.dataSvc.saveMeal(mealDataObj);

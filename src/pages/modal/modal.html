@@ -28,6 +28,13 @@
 
     <button ion-button expand="full" color="light" (click)="addControl()">Add Ingredient</button>
 
+    <br>
+    
+    <ion-item>
+      <ion-checkbox color="primary" id="addToMenu" [(ngModel)]="addToMenuCheckbox"></ion-checkbox>
+      <ion-label>Add to menu?</ion-label>
+    </ion-item>
+
     <!-- <button ion-button block>Add Photo</button> -->
     <button ion-button (click)="saveMeal()" block>Save & Load Meal</button>
   </ion-list>
