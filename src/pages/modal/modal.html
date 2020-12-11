@@ -35,7 +35,15 @@
       <ion-label>Add to menu?</ion-label>
     </ion-item>
 
-    <!-- <button ion-button block>Add Photo</button> -->
+    <br>
+
+    <button ion-button expand="full" color="light" (click)="takeOrUploadPhoto()">Take or Upload Photo</button>
+
+    <div *ngIf="imageData">
+      <ion-label>Uploaded Image</ion-label>
+      <img [src]="imageData">
+    </div>
+    
     <button ion-button (click)="saveMeal()" block>Save & Load Meal</button>
   </ion-list>
 

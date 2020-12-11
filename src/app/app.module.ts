@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ActionSheetController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -46,7 +47,8 @@ import { MyApp } from './app.component';
     InputDialogServiceProvider,
     DataServiceProvider,
     ActionSheetController,
-    Camera
+    Camera,
+    File
   ]
 })
 export class AppModule {}
