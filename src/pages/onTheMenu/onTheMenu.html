@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-list>
-    <p>12-09-20 8:15 am</p>
+    <p>12-10-20 7:08 pm</p>
     <h3 text-center *ngIf="onTheMenuItems.length === 0">
       Nothing on the menu yet
     </h3>
@@ -21,7 +21,7 @@
           color="primary"
           icon-start
         >
-          <ion-icon name="information_circle"></ion-icon>
+          <ion-icon name="help"></ion-icon>
           Get Details
         </button>
         <button
@@ -33,6 +33,15 @@
           <ion-icon name="heart-outline"></ion-icon>
           <span *ngIf="menuItem.isFavorite">Favorite</span>
           <span *ngIf="!menuItem.isFavorite">Add Favorite</span>
+        </button>
+        <button
+          (click)="removeFromMenu(menuItem)"
+          ion-button
+          color="danger"
+          icon-start
+        >
+        <ion-icon name="close"></ion-icon>
+          Remove
         </button>
       </ion-item-options>
     </ion-item-sliding>

@@ -22,8 +22,6 @@ export class OnTheMenuPage {
   }
 
   loadOnTheMenuItems() {
-    console.log('I am here');
-    // this.onTheMenuItems = this.dataService.getOnTheMenuItems();
     this.dataService.getOnTheMenuItems()
       .subscribe(
         onTheMenuItems => this.onTheMenuItems = onTheMenuItems,

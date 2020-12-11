@@ -8,13 +8,25 @@ import { DataServiceProvider } from '../../providers/data-service/data-service';
 })
 export class FavoritesPage {
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider) {
+  favoriteItems = [];
+  errorMessage: string;
 
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider) {
+    dataService.dataChanged$.subscribe((dataChanged: boolean) => {
+      this.loadFavorites();
+    });
   }
 
-  // loadFavorites() {
-  //   return this.favService.getFavorites();
-  // }
+  ionViewWillEnter() {
+    this.loadFavorites();
+  }
+
+  loadFavorites() {
+    return this.dataService.getFavorites().subscribe(
+      favoriteItems => this.favoriteItems = favoriteItems,
+      error => this.errorMessage = <any>error 
+    );
+  }
 
   // removeFromFavorites(favoriteName, index) {
   //   console.log('favorite id', favoriteName);

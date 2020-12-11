@@ -6,39 +6,6 @@ import { Observable, Subject } from 'rxjs';
 @Injectable()
 export class DataServiceProvider {
 
-  // onTheMenuItems = [
-  //   {
-  //   "name": "Spicy Shrimp",
-  //   "isFavorite": false,
-  //   "ingredientList": [
-  //     {
-  //       "name": "Shrimp"
-  //     },
-  //     {
-  //       "name": "Chili Paste"
-  //     },
-  //     {
-  //       "name": "Lemon"
-  //     }
-  //   ]
-  //   },
-  //   {
-  //     "name": "Spicy Shrimp 2",
-  //     "isFavorite": true,
-  //     "ingredientList": [
-  //       {
-  //         "name": "Shrimp2"
-  //       },
-  //       {
-  //         "name": "Chili Paste2"
-  //       },
-  //       {
-  //         "name": "Lemon2"
-  //       }
-  //     ]
-  //     }
-  // ];
-
   putItems: any = [];
 
   onTheMenuItems: any = [];
@@ -50,17 +17,27 @@ export class DataServiceProvider {
   constructor(public http: HttpClient) {
     this.dataChangeSubject = new Subject<boolean>();
     this.dataChanged$ = this.dataChangeSubject.asObservable();
-    console.log('In constructor of data service');
   }
 
-  // getOnTheMenuItems() {
   getOnTheMenuItems(): Observable<any> {
-    console.log('read to make the api call');
-    // return this.onTheMenuItems;
-    return this.http.get(this.baseURL + '/api/myCollection').pipe(
+    return this.http.get(this.baseURL + '/api/onTheMenu/myCollection').pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
+  }
+
+  getFavorites(): Observable<any> {
+    return this.http.get(this.baseURL + '/api/favorites/myCollection').pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  saveMeal(mealData) {
+    this.http.post(this.baseURL + '/api/myCollection', mealData).subscribe(res => {
+      this.putItems = res;
+      this.dataChangeSubject.next(true);
+    })
   }
 
   private extractData(res: Response) {
@@ -78,19 +55,6 @@ export class DataServiceProvider {
     }
     console.error(errMsg);
     return Observable.throw(errMsg);
-  }
-
-  saveMeal(mealData) {
-    console.log("CORA MEALDATA");
-    console.log(mealData);
-
-    this.http.post(this.baseURL + '/api/myCollection', mealData).subscribe(res => {
-      console.log('INSIDE POST');
-      console.log(res);
-      this.putItems = res;
-      console.log('PUT ITEMS', this.putItems);
-      this.dataChangeSubject.next(true);
-    })
   }
 
 }
