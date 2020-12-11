@@ -16,6 +16,17 @@
         <ion-label>{{favoriteItem.name}}</ion-label>
       </ion-item>
       <ion-item-options>
+        <div *ngIf="!favoriteItem.onTheMenu">
+        <button
+          (click)="addToMenu(favoriteItem)"
+          ion-button
+          color="primary"
+          icon-start
+        >
+            <ion-icon name="add-circle"></ion-icon><br>
+            Add to Menu
+          </button>
+        </div>
         <button
           (click)="removeFromFavorites(favoriteItem)"
           ion-button

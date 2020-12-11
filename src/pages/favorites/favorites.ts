@@ -37,4 +37,13 @@ export class FavoritesPage {
     this.dataService.updateFavoriteStatus(favoriteItem, false);
   }
 
+  addToMenu(favoriteItem) {
+    const toast = this.toastCtrl.create({
+      message: "Adding " + favoriteItem.name + " to Menu...",
+      duration: 3000
+    });
+    toast.present();
+    this.dataService.updateOnTheMenuFlag(favoriteItem, true);
+  }
+
 }
