@@ -33,6 +33,15 @@ export class DataServiceProvider {
     );
   }
 
+  // if we pass in a false, we should set isFavorite to false in the db.
+  // if we pass in a true, we should set isFavorite to true in the db.
+  updateFavoriteStatus(favoriteItem, isFavorite) {
+    this.http.put(this.baseURL + '/api/favorites/myCollection/' + favoriteItem._id + '/' + isFavorite, favoriteItem).subscribe(res => {
+      this.putItems = res;
+      this.dataChangeSubject.next(true);
+    });
+  }
+
   saveMeal(mealData) {
     this.http.post(this.baseURL + '/api/myCollection', mealData).subscribe(res => {
       this.putItems = res;

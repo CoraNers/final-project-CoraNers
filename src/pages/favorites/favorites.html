@@ -9,7 +9,7 @@
 <ion-content>
   <ion-list>
     <h3 text-center *ngIf="favoriteItems.length === 0">
-      Nothing on the menu yet
+      No favorites yet!  
     </h3>
     <ion-item-sliding *ngFor="let favoriteItem of favoriteItems; let i = index">
       <ion-item>
@@ -17,7 +17,7 @@
       </ion-item>
       <ion-item-options>
         <button
-          (click)="removeFromFavorites(favoriteItem.name, i)"
+          (click)="removeFromFavorites(favoriteItem)"
           ion-button
           color="secondary"
           icon-start

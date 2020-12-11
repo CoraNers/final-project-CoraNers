@@ -11,12 +11,35 @@
     <button ion-button full (click)="loadRecipe()">Load Recipe</button>
 
     <ion-list>
-      <ion-list-header>
-        <ion-label>Loaded Recipes</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Label</ion-label>
-      </ion-item>
+      <h3 text-center *ngIf="!onTheMenuItems">
+        No recipes have been loaded yet
+      </h3>
+      <ion-item-sliding *ngFor="let menuItem of onTheMenuItems; let i = index">
+        <ion-item>
+          <ion-label>{{menuItem.name}}</ion-label>
+        </ion-item>
+        <ion-item-options>
+          <button
+            (click)="viewDetails(menuItem, i)"
+            ion-button
+            color="primary"
+            icon-start
+          >
+            <ion-icon name="information_circle"></ion-icon>
+            Get Details
+          </button>
+          <button
+            (click)="addToFavorites(menuItem.name, i)"
+            ion-button
+            color="secondary"
+            icon-start
+          >
+            <ion-icon name="heart-outline"></ion-icon>
+            <span *ngIf="menuItem.isFavorite">Favorite</span>
+            <span *ngIf="!menuItem.isFavorite">Add Favorite</span>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
    
   </ion-content>

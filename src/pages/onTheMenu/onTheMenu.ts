@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import { ModalController, NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 
 @Component({
@@ -11,7 +11,8 @@ export class OnTheMenuPage {
   onTheMenuItems = [];
   errorMessage: string;
 
-  constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public modalCtrl: ModalController,
+    public toastCtrl: ToastController) {
     dataService.dataChanged$.subscribe((dataChanged: boolean) => {
       this.loadOnTheMenuItems();
     });
@@ -29,7 +30,7 @@ export class OnTheMenuPage {
       );
   }
 
-  viewDetails(menuItem, index) {
+  viewDetails(menuItem) {
     console.log('view details');
     const modalTitle = menuItem.name;
     var modalPage = this.modalCtrl.create('ModalPage', menuItem); 
@@ -38,8 +39,13 @@ export class OnTheMenuPage {
     // this.modalCtrl.showDetails(menuItem);
   }
 
-  addToFavorites(menuItem, index) {
-    console.log('add to favorites');
+  addToFavorites(menuItem) {
+    const toast = this.toastCtrl.create({
+      message: "Adding " + menuItem.name + " to Favorites...",
+      duration: 3000
+    });
+    toast.present();
+    this.dataService.updateFavoriteStatus(menuItem, true);
   }
 
 }

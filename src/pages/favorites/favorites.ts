@@ -28,14 +28,13 @@ export class FavoritesPage {
     );
   }
 
-  // removeFromFavorites(favoriteName, index) {
-  //   console.log('favorite id', favoriteName);
-  //   const toast = this.toastCtrl.create({
-  //     message: "Removing favorite - " + favoriteName + " ...",
-  //     duration: 3000
-  //   });
-  //   toast.present();
-  //   this.dataService.removeFavorite(index);
-  // }
+  removeFromFavorites(favoriteItem) {
+    const toast = this.toastCtrl.create({
+      message: "Removing favorite - " + favoriteItem.name + " ...",
+      duration: 3000
+    });
+    toast.present();
+    this.dataService.updateFavoriteStatus(favoriteItem, false);
+  }
 
 }
