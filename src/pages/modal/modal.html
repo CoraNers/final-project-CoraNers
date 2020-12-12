@@ -1,10 +1,10 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>
       <div *ngIf="modalPageTitle">{{this.modalPageTitle}}</div>
     </ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content padding>
   <div *ngFor="let item of modalPageItems">
@@ -44,7 +44,8 @@
       <img [src]="imageData">
     </div>
     
-    <button ion-button (click)="saveMeal()" block>Save & Load Meal</button>
+    <button style="float: left" ion-button (click)="saveMeal()">Save & Load Meal</button>
+    <button style="float: right" (click)="doCancel()" ion-button data-dismiss="modal" color="light">Cancel</button>
   </ion-list>
 
 

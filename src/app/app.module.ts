@@ -1,9 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
-import { File } from '@ionic-native/file/ngx';
+import { OCR } from '@ionic-native/ocr/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ActionSheetController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -48,7 +48,8 @@ import { MyApp } from './app.component';
     DataServiceProvider,
     ActionSheetController,
     Camera,
-    File
-  ]
+    OCR
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

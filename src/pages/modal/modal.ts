@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { File } from '@ionic-native/file/ngx';
+import { OCR, OCRSourceType } from '@ionic-native/ocr/ngx';
 import { ActionSheetController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 
@@ -20,6 +20,7 @@ export class ModalPage {
   private name: string; // bound to recipeName in modal
   private addToMenuCheckbox: boolean; // bound to checkbox in modal
   private imageData;
+  private textocr: any;
 
   modalPageTitle: string;
   modalPageItems: any;
@@ -28,8 +29,8 @@ export class ModalPage {
   private options: CameraOptions;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder,
-    private dataSvc: DataServiceProvider, private actionSheetCtrl: ActionSheetController, private camera: Camera, 
-    private file: File) {
+    private dataSvc: DataServiceProvider, private actionSheetCtrl: ActionSheetController, private camera: Camera,
+    private ocr: OCR) {
 
     this.myForm = formBuilder.group({
       ingredient1: ['', Validators.required]
@@ -58,7 +59,11 @@ export class ModalPage {
     let ingredientListArray = [];
     for (let i = 0; i < ingredientValues.length; i++) {
       // make an object out of it and put it in the array to be sent to the service
-      ingredientListArray.push({ "name": ingredientValues[i]})
+      ingredientListArray.push(
+        { 
+          "name": ingredientValues[i],
+          "needToPurchase": true
+        })
     }
 
     let mealDataObj = {
@@ -103,12 +108,40 @@ export class ModalPage {
 
   processPicture(options) {
     this.camera.getPicture(options).then(imageData => {
-      console.log("TEMPIMAGE");
       let base64data = 'data:image/jpeg;base64,' + imageData;
       this.imageData = base64data;
+      // document.addEventListener("deviceready", onDeviceReady, false);
+
+      
+      // function onDeviceReady() {
+      //   alert(OCR);
+      //   alert(this.ocr);
+      //   alert(this.textocr);
+      //   this.ocr.textocr.recText(OCRSourceType.BASE64, this.imageData).then(recognizedText => {
+      //     if (recognizedText.foundText) {
+      //       alert('text was found');
+      //     } else {
+      //       alert('no text found');
+      //     }
+      //   }).catch(error => {
+      //     alert('in error of ocr');
+      //     alert(error);
+      //   });
+      // }
+
+      // this.ocr.recText(OCRSourceType.BASE64, this.imageData).then(recognizedText => {
+      //   if (recognizedText.foundText) {
+      //     alert('text was found');
+      //   } else {
+      //     alert('no text found');
+      //   }
+      // }).catch(error => {
+      //   alert('in error of ocr');
+      //   alert(error);
+      // });
+      
 
     }).catch(err => {
-      console.log('no photo selected');
       alert(err);
       console.error('Error', err)
     });
@@ -124,6 +157,10 @@ export class ModalPage {
       correctOrientation: true
     }
    return options;
+  }
+
+  doCancel() {
+    
   }
 
 }

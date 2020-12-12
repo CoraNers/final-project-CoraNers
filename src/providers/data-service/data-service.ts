@@ -63,6 +63,13 @@ export class DataServiceProvider {
     })
   }
 
+  // getShoppingList(): Observable<any> {
+  //   return this.http.get(this.baseURL + '/api/shoppingList/myCollection').pipe(
+  //     map(this.extractData),
+  //     catchError(this.handleError)
+  //   );
+  // }
+
   private extractData(res: Response) {
     let body = res;
     return body || {};

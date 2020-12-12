@@ -6,11 +6,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of itemsToShopFor">
-      <ion-label>{{item.val}}</ion-label>
-      <ion-checkbox slot="beginning" [(ngModel)]="item.isChecked"></ion-checkbox>
+    <h3 text-center *ngIf="reformattedItems.length === 0">
+      Please add items to your menu for your shopping list.
+    </h3>
+    <ion-item *ngFor="let item of reformattedItems">
+      <ion-label>{{item.name}}</ion-label>
+      <ion-checkbox slot="beginning" [(ngModel)]="!item.needToPurchase"></ion-checkbox>
     </ion-item>
   </ion-list>
 </ion-content>
