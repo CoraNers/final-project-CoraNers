@@ -8,7 +8,7 @@
 
 <ion-content padding>
   <ion-list>
-    <h3 text-center *ngIf="reformattedItems.length === 0">
+    <h3 text-center *ngIf="isLoaded && reformattedItems.length === 0">
       Please add items to your menu for your shopping list.
     </h3>
     <ion-item *ngFor="let item of reformattedItems">

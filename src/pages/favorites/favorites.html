@@ -8,7 +8,7 @@
 
 <ion-content>
   <ion-list>
-    <h3 text-center *ngIf="favoriteItems.length === 0">
+    <h3 text-center *ngIf="isLoaded && favoriteItems.length === 0">
       No favorites yet!  
     </h3>
     <ion-item-sliding *ngFor="let favoriteItem of favoriteItems; let i = index">

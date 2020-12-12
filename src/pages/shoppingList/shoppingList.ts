@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { NavController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 
@@ -11,23 +12,28 @@ export class ShoppingListPage {
   itemsToShopFor = [];
   reformattedItems = [];
   errorMessage: string;
+  isLoaded = false;
 
-  constructor(public navCtrl: NavController, public dataService: DataServiceProvider) {
+  constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public spinnerDialog: SpinnerDialog) {
     dataService.dataChanged$.subscribe((dataChanged: boolean) => {
       this.loadShoppingList();
     });
   }
 
   ionViewWillEnter() {
+    this.spinnerDialog.show();
     this.loadShoppingList();
   }
 
   loadShoppingList() {
+    this.reformattedItems = [];
     // gets all the items from the meals 'on the menu' only
     this.dataService.getOnTheMenuItems()
       .subscribe(data => {
         this.itemsToShopFor = data;
         this.reformatShoppingListAndDedupe();
+        this.spinnerDialog.hide();
+        this.isLoaded = true;
       });
   }
 
@@ -35,21 +41,9 @@ export class ShoppingListPage {
     console.log(this.itemsToShopFor);
     this.itemsToShopFor.forEach(recipe => {
       recipe.ingredientList.forEach(ingredientListItem => {
-        // array of the item
-        // console.log(ingredientListItem);
-        // console.log(ingredientListItem.name);
         this.reformattedItems.push(ingredientListItem);
       });
-      // this.reformattedItems.push({ "val": });
     });
   }
-
-
-  // public itemsToShopFor = [
-  //   { val: 'Jalepeno Pepper', isChecked: false },
-  //   { val: 'Cream Cheese', isChecked: false },
-  //   { val: 'Cheddar Cheese', isChecked: false },
-  //   { val: 'Bacon', isChecked: false }
-  // ];
 
 }

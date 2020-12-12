@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
 import { OCR } from '@ionic-native/ocr/ngx';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ActionSheetController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -48,7 +49,8 @@ import { MyApp } from './app.component';
     DataServiceProvider,
     ActionSheetController,
     Camera,
-    OCR
+    OCR,
+    SpinnerDialog
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

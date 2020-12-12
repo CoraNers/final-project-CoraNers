@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Camera } from '@ionic-native/camera';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { ActionSheetController, ModalController, NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { InputDialogServiceProvider } from '../../providers/input-dialog-service/input-dialog-service';
@@ -12,11 +13,10 @@ export class LoadRecipesPage {
 
   allItems = [];
   errorMessage: string;
-
+  isLoaded = false;
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider,
-    private inputService: InputDialogServiceProvider,
-    public modalCtrl: ModalController) {
+    private inputService: InputDialogServiceProvider, public modalCtrl: ModalController, public spinnerDialog: SpinnerDialog) {
 
       dataService.dataChanged$.subscribe((dataChanged: boolean) => {
         this.loadAll();
@@ -24,14 +24,17 @@ export class LoadRecipesPage {
   }
 
   ionViewWillEnter() {
+    this.spinnerDialog.show();
     this.loadAll();
   }
 
   loadAll() {
-    return this.dataService.loadAllRecipes().subscribe(
-      allItems => this.allItems = allItems,
-      error => this.errorMessage = <any>error 
-    );
+    this.dataService.loadAllRecipes()
+      .subscribe(recipes => {
+        this.allItems = recipes;
+        this.spinnerDialog.hide();
+        this.isLoaded = true;
+      });
   }
 
   loadRecipe() {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 
@@ -10,22 +11,27 @@ export class FavoritesPage {
 
   favoriteItems = [];
   errorMessage: string;
+  isLoaded = false;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider,
+    private spinnerDialog: SpinnerDialog) {
     dataService.dataChanged$.subscribe((dataChanged: boolean) => {
       this.loadFavorites();
     });
   }
 
   ionViewWillEnter() {
+    this.spinnerDialog.show();
     this.loadFavorites();
   }
 
   loadFavorites() {
-    return this.dataService.getFavorites().subscribe(
-      favoriteItems => this.favoriteItems = favoriteItems,
-      error => this.errorMessage = <any>error 
-    );
+    this.dataService.getFavorites()
+      .subscribe(favorites => {
+        this.favoriteItems = favorites;
+        this.spinnerDialog.hide();
+        this.isLoaded = true;
+      });
   }
 
   removeFromFavorites(favoriteItem) {

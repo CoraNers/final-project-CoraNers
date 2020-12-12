@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-list>
-    <h3 text-center *ngIf="onTheMenuItems.length === 0">
+    <h3 text-center *ngIf="isLoaded && onTheMenuItems.length === 0">
       Nothing on the menu yet
     </h3>
     <ion-item-sliding *ngFor="let menuItem of onTheMenuItems; let i = index">

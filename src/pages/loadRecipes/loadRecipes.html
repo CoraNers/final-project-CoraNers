@@ -11,7 +11,7 @@
     <button class="button" ion-button expand="block" (click)="loadRecipe()">Load Recipe</button>
 
     <ion-list>
-      <h3 text-center *ngIf="!allItems">
+      <h3 text-center *ngIf="isLoaded && !allItems">
         No recipes have been loaded yet.
       </h3>
       <ion-item-sliding *ngFor="let item of allItems; let i = index">

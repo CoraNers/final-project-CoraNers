@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 @Component({
   selector: 'page-onTheMenu',
@@ -11,24 +12,27 @@ export class OnTheMenuPage {
   onTheMenuItems = [];
   errorMessage: string;
   loadDetailsCard = false;
+  isLoaded = false;
 
   constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public modalCtrl: ModalController,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController, private spinnerDialog: SpinnerDialog) {
     dataService.dataChanged$.subscribe((dataChanged: boolean) => {
       this.loadOnTheMenuItems();
     });
   }
   
   ionViewWillEnter() {
+    this.spinnerDialog.show();
     this.loadOnTheMenuItems();
   }
 
   loadOnTheMenuItems() {
     this.dataService.getOnTheMenuItems()
-      .subscribe(
-        onTheMenuItems => this.onTheMenuItems = onTheMenuItems,
-        error => this.errorMessage = <any>error 
-      );
+      .subscribe(onTheMenuItems => {
+        this.onTheMenuItems = onTheMenuItems;
+        this.spinnerDialog.hide();
+        this.isLoaded = true;
+      });
   }
 
   viewDetails(menuItem) {
@@ -36,7 +40,6 @@ export class OnTheMenuPage {
     this.loadDetailsCard = true;
     var cardModal = this.modalCtrl.create('CardModalPage', menuItem); 
     cardModal.present();
-
   }
 
   addToFavorites(menuItem) {
