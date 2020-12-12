@@ -10,6 +10,7 @@ export class OnTheMenuPage {
 
   onTheMenuItems = [];
   errorMessage: string;
+  loadDetailsCard = false;
 
   constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public modalCtrl: ModalController,
     public toastCtrl: ToastController) {
@@ -32,11 +33,10 @@ export class OnTheMenuPage {
 
   viewDetails(menuItem) {
     console.log('view details');
-    const modalTitle = menuItem.name;
-    var modalPage = this.modalCtrl.create('ModalPage', menuItem); 
-    modalPage.present();
+    this.loadDetailsCard = true;
+    var cardModal = this.modalCtrl.create('CardModalPage', menuItem); 
+    cardModal.present();
 
-    // this.modalCtrl.showDetails(menuItem);
   }
 
   addToFavorites(menuItem) {

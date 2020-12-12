@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <div *ngIf="cardRecipeName">{{cardRecipeName}}</div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngFor="let item of cardIngredients">
+    <ion-item>
+      <ion-label>{{item.name}}</ion-label>
+    </ion-item>
+  </div>
+
+  <span *ngIf="cardIsFavorite">
+    <ion-item>
+      <ion-icon name="heart"> Favorite</ion-icon>
+    </ion-item>
+  </span>
+
+  <button style="float: right" (click)="doCancel()" ion-button data-dismiss="modal" color="light">Cancel</button>
+
+
+</ion-content>
