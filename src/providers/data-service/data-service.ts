@@ -63,12 +63,12 @@ export class DataServiceProvider {
     })
   }
 
-  // getShoppingList(): Observable<any> {
-  //   return this.http.get(this.baseURL + '/api/shoppingList/myCollection').pipe(
-  //     map(this.extractData),
-  //     catchError(this.handleError)
-  //   );
-  // }
+  removeFromMenu(menuItem, isOnTheMenu) {
+    this.http.put(this.baseURL + '/api/onTheMenu/myCollection/' + menuItem._id + "/" + isOnTheMenu, menuItem).subscribe(res => {
+      this.putItems = res;
+      this.dataChangeSubject.next(true);
+    })
+  }
 
   private extractData(res: Response) {
     let body = res;

@@ -34,7 +34,7 @@
           <span *ngIf="!menuItem.isFavorite">Fav</span>
         </button>
         <button
-          (click)="removeFromMenu(menuItem)"
+          (click)="removeFromMenu(menuItem, false)"
           ion-button
           color="danger"
           icon-start

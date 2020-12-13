@@ -40,6 +40,9 @@ export class OnTheMenuPage {
     this.loadDetailsCard = true;
     var cardModal = this.modalCtrl.create('CardModalPage', menuItem); 
     cardModal.present();
+
+    cardModal.onDidDismiss(data => {
+    });
   }
 
   addToFavorites(menuItem) {
@@ -49,6 +52,15 @@ export class OnTheMenuPage {
     });
     toast.present();
     this.dataService.updateFavoriteStatus(menuItem, true);
+  }
+
+  removeFromMenu(menuItem, isOnTheMenu) {
+    const toast = this.toastCtrl.create({
+      message: "Removing " + menuItem.name + "...",
+      duration: 3000
+    });
+    toast.present();
+    this.dataService.removeFromMenu(menuItem, isOnTheMenu);
   }
 
 }
