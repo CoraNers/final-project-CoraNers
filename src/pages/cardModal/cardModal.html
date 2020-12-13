@@ -8,13 +8,13 @@
 
 <ion-content padding>
   <div *ngFor="let item of cardIngredients">
-    <ion-item>
+    <ion-item class="masters">
       <ion-label>{{item.name}}</ion-label>
     </ion-item>
   </div>
 
   <span *ngIf="cardIsFavorite">
-    <ion-item>
+    <ion-item class="masters">
       <ion-icon name="heart"> Favorite</ion-icon>
     </ion-item>
   </span>

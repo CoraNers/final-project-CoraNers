@@ -8,18 +8,18 @@
 
 <ion-content padding>
   <div *ngFor="let item of modalPageItems">
-    <ion-item>
+    <ion-item class="masters">
       <ion-label>{{item.name}}</ion-label>
     </ion-item>
   </div>
 
   <ion-list lines="none">
-    <ion-item>
+    <ion-item class="masters">
       <ion-label>Recipe Name...</ion-label>
       <ion-input required type="text" [(ngModel)]="name"></ion-input>
     </ion-item>
     <form [formGroup]="myForm">
-      <ion-item *ngFor="let control of myForm.controls | keyvalue">
+      <ion-item class="masters" *ngFor="let control of myForm.controls | keyvalue">
         <ion-label>Ingredient...</ion-label>
         <ion-input required type="text" [formControlName]="control.key" placeHolder="Ingredient..."></ion-input>
         <ion-icon (click)="removeControl(control)" name="close-circle"></ion-icon>
@@ -30,7 +30,7 @@
 
     <br>
     
-    <ion-item>
+    <ion-item class="masters">
       <ion-checkbox color="primary" id="addToMenu" [(ngModel)]="addToMenuCheckbox"></ion-checkbox>
       <ion-label>Add to menu?</ion-label>
     </ion-item>
