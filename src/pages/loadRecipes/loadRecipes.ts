@@ -27,6 +27,7 @@ export class LoadRecipesPage {
   }
 
   loadAll() {
+    this.isLoaded = false;
     this.dataService.loadAllRecipes()
       .subscribe(recipes => {
         this.allItems = recipes;

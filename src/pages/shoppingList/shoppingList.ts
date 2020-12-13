@@ -27,6 +27,7 @@ export class ShoppingListPage {
 
   loadShoppingList() {
     this.reformattedItems = [];
+    this.isLoaded = false;
     // gets all the items from the meals 'on the menu' only
     this.dataService.getOnTheMenuItems()
       .subscribe(data => {

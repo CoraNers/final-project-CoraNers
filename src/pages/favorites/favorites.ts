@@ -26,6 +26,7 @@ export class FavoritesPage {
   }
 
   loadFavorites() {
+    this.isLoaded = false;
     this.dataService.getFavorites()
       .subscribe(favorites => {
         this.favoriteItems = favorites;
