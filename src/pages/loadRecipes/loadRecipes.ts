@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { Camera } from '@ionic-native/camera';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import { ActionSheetController, ModalController, NavController, ToastController } from 'ionic-angular';
+import { ModalController, NavController, ToastController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
-import { InputDialogServiceProvider } from '../../providers/input-dialog-service/input-dialog-service';
 
 @Component({
   selector: 'page-loadRecipes',
@@ -16,7 +14,7 @@ export class LoadRecipesPage {
   isLoaded = false;
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public dataService: DataServiceProvider,
-    private inputService: InputDialogServiceProvider, public modalCtrl: ModalController, public spinnerDialog: SpinnerDialog) {
+    public modalCtrl: ModalController, public spinnerDialog: SpinnerDialog) {
 
       dataService.dataChanged$.subscribe((dataChanged: boolean) => {
         this.loadAll();
@@ -39,7 +37,6 @@ export class LoadRecipesPage {
 
   loadRecipe() {
     console.log('loadRecipe');
-    const modalTitle = "Test";
     var modalPage = this.modalCtrl.create('ModalPage'); 
     modalPage.present();
 
