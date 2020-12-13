@@ -72,7 +72,7 @@ export class ModalPage {
       name: this.name,
       isFavorite: false,
       ingredientList: ingredientListArray,
-      onMenu: this.addToMenuCheckbox,
+      onTheMenu: this.addToMenuCheckbox,
       imageData: this.imageData
     };
 
