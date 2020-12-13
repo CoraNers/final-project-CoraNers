@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { OCR, OCRSourceType } from '@ionic-native/ocr/ngx';
+import { OCR } from '@ionic-native/ocr/ngx';
 import { ActionSheetController, IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
-import { DataServiceProvider } from '../../providers/data-service/data-service';
 import _ from 'lodash';
+import { DataServiceProvider } from '../../providers/data-service/data-service';
 
 // some code here for dynamically adding additional inputs referenced from here:
 // https://www.joshmorony.com/dynamic-infinite-input-fields-in-an-ionic-application/
@@ -98,7 +98,6 @@ export class ModalPage {
   }
 
   takeOrUploadPhoto() {
-    console.debug("CORA In takeOrUploadPhoto");
     let sourceSelected;
 
     const actionSheet = this.actionSheetCtrl.create({
@@ -107,7 +106,6 @@ export class ModalPage {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          console.debug('CORA library clicked');
           sourceSelected = 0;
           this.options = this.setCameraOptions(sourceSelected);
           this.processPicture(this.options);
@@ -116,7 +114,6 @@ export class ModalPage {
         text: 'Use Camera',
         icon: 'share',
         handler: () => {
-          console.debug('CORA camera clicked');
           sourceSelected = 1;
           this.options = this.setCameraOptions(sourceSelected);
           this.processPicture(this.options);
@@ -130,40 +127,12 @@ export class ModalPage {
     this.camera.getPicture(options).then(imageData => {
       let base64data = 'data:image/jpeg;base64,' + imageData;
       this.imageData = base64data;
-      // document.addEventListener("deviceready", onDeviceReady, false);
-
-      
-      // function onDeviceReady() {
-      //   alert(OCR);
-      //   alert(this.ocr);
-      //   alert(this.textocr);
-      //   this.ocr.textocr.recText(OCRSourceType.BASE64, this.imageData).then(recognizedText => {
-      //     if (recognizedText.foundText) {
-      //       alert('text was found');
-      //     } else {
-      //       alert('no text found');
-      //     }
-      //   }).catch(error => {
-      //     alert('in error of ocr');
-      //     alert(error);
-      //   });
-      // }
-
-      // this.ocr.recText(OCRSourceType.BASE64, this.imageData).then(recognizedText => {
-      //   if (recognizedText.foundText) {
-      //     alert('text was found');
-      //   } else {
-      //     alert('no text found');
-      //   }
-      // }).catch(error => {
-      //   alert('in error of ocr');
-      //   alert(error);
-      // });
-      
-
     }).catch(err => {
-      alert(err);
-      console.error('Error', err)
+      const toast = this.toastCtrl.create({
+        message: "Error while processing your image.  Please try again later.",
+        duration: 3000
+      });
+      toast.present();
     });
   }
 

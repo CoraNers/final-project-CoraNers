@@ -12,7 +12,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "ESNext",
-    "types": []
+    "types": ["node"]
   },
   "include": [
     "src/**/*.ts"

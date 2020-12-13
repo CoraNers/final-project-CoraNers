@@ -36,7 +36,6 @@ export class LoadRecipesPage {
   }
 
   loadRecipe() {
-    console.log('loadRecipe');
     var modalPage = this.modalCtrl.create('ModalPage'); 
     modalPage.present();
 

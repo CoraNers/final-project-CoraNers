@@ -38,7 +38,6 @@ export class ShoppingListPage {
   }
 
   reformatShoppingListAndDedupe() {
-    console.log(this.itemsToShopFor);
     this.itemsToShopFor.forEach(recipe => {
       recipe.ingredientList.forEach(ingredientListItem => {
         this.reformattedItems.push(ingredientListItem);

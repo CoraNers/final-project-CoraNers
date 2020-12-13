@@ -21,7 +21,6 @@ export class CardModalPage {
     this.cardIngredients = this.navParams.get('ingredientList') || [];
     this.cardIsFavorite = this.navParams.get('isFavorite') || false;
     this.cardImageData = this.navParams.get('imageData') || undefined;
-    console.log(this.cardImageData);
   }
 
   doCancel() {
