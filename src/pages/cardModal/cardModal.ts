@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -12,13 +12,17 @@ export class CardModalPage {
   cardIngredients: any;
   cardIsFavorite: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
     this.cardRecipeName = this.navParams.get('name');
     this.cardIngredients = this.navParams.get('ingredientList') || [];
     this.cardIsFavorite = this.navParams.get('isFavorite') || false;
+  }
+
+  doCancel() {
+    this.viewCtrl.dismiss();
   }
 
 }

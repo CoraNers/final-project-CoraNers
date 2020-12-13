@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { OCR, OCRSourceType } from '@ionic-native/ocr/ngx';
-import { ActionSheetController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { ActionSheetController, IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import _ from 'lodash';
 
@@ -31,7 +31,7 @@ export class ModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder,
     private dataSvc: DataServiceProvider, private actionSheetCtrl: ActionSheetController, private camera: Camera,
-    private ocr: OCR, private toastCtrl: ToastController) {
+    private ocr: OCR, private toastCtrl: ToastController, public viewCtrl: ViewController) {
 
     this.myForm = formBuilder.group({
       ingredient1: ['', Validators.required]
@@ -89,8 +89,12 @@ export class ModalPage {
       });
       toast.present();
       this.dataSvc.saveMeal(mealDataObj);
+      this.viewCtrl.dismiss(mealDataObj);
     }
+  }
 
+  doCancel() {
+    this.viewCtrl.dismiss();
   }
 
   takeOrUploadPhoto() {
@@ -173,10 +177,6 @@ export class ModalPage {
       correctOrientation: true
     }
    return options;
-  }
-
-  doCancel() {
-    
   }
 
 }

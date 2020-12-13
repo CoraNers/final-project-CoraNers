@@ -42,6 +42,22 @@ export class LoadRecipesPage {
     const modalTitle = "Test";
     var modalPage = this.modalCtrl.create('ModalPage'); 
     modalPage.present();
+
+    modalPage.onDidDismiss(data => {
+      let toast;
+      if (data) {
+        toast = this.toastCtrl.create({
+          message: "Recipe saved!",
+          duration: 3000
+        });
+      } else {
+        toast = this.toastCtrl.create({
+          message: "Your changes have not been saved.",
+          duration: 3000
+        });
+      }
+      toast.present();
+    });
   }
 
   viewDetails(item) {
