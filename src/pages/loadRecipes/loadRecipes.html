@@ -38,6 +38,15 @@
             <span *ngIf="item.isFavorite">Fav</span>
             <span *ngIf="!item.isFavorite">Add Fav</span>
           </button>
+          <button 
+            (click)="addToMenu(item)"
+            ion-button
+            color="danger"
+            icon-start
+          >
+            <ion-icon name="nutrition"></ion-icon>
+            Add to Menu
+          </button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

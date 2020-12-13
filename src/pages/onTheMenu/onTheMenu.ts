@@ -36,7 +36,6 @@ export class OnTheMenuPage {
   }
 
   viewDetails(menuItem) {
-    console.log('view details');
     this.loadDetailsCard = true;
     var cardModal = this.modalCtrl.create('CardModalPage', menuItem); 
     cardModal.present();

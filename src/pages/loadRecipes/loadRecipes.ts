@@ -61,7 +61,10 @@ export class LoadRecipesPage {
   }
 
   viewDetails(item) {
-
+    var cardModal = this.modalCtrl.create('CardModalPage', item); 
+    cardModal.present();
+    cardModal.onDidDismiss(data => {
+    });
   }
 
   addToFavorites(item) {
@@ -71,6 +74,15 @@ export class LoadRecipesPage {
     });
     toast.present();
     this.dataService.updateFavoriteStatus(item, true);
+  }
+
+  addToMenu(item) {
+    const toast = this.toastCtrl.create({
+      message: "Adding " + item.name + " to Menu...",
+      duration: 3000
+    });
+    toast.present();
+    this.dataService.updateOnTheMenuFlag(item, true);
   }
 
 }

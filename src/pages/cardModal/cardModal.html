@@ -19,6 +19,11 @@
     </ion-item>
   </span>
 
+  <div *ngIf="cardImageData">
+    <ion-label>Uploaded Image</ion-label>
+    <img [src]="cardImageData">
+  </div>
+
   <button style="float: right" (click)="doCancel()" ion-button data-dismiss="modal" color="light">Cancel</button>
 
 
