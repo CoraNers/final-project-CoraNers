@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { OCR } from '@ionic-native/ocr/ngx';
 import { ActionSheetController, IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import _ from 'lodash';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
@@ -31,7 +30,7 @@ export class ModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder,
     private dataSvc: DataServiceProvider, private actionSheetCtrl: ActionSheetController, private camera: Camera,
-    private ocr: OCR, private toastCtrl: ToastController, public viewCtrl: ViewController) {
+    private toastCtrl: ToastController, public viewCtrl: ViewController) {
 
     this.myForm = formBuilder.group({
       ingredient1: ['', Validators.required]
